@@ -10,7 +10,7 @@ app.use(cors());
 app.post("/register", async (req, res) => {
     let user = new User(req.body);
     let result = await user.save();
-    res.send(result)
+    result ? res.send("Data saved sucessfull") : res.send("Something went wrong");
 })
 
 app.post("/login", async (req, res) => {
@@ -19,7 +19,7 @@ app.post("/login", async (req, res) => {
         user ? res.send(user) : res.send({result: "No user found"})     
     }else{
         res.send({result: "No user found"})
-    }
+    }   
 })
 
 app.listen(5000, () => {
